@@ -6,10 +6,8 @@ import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class CustomersService {
   constructor(private prisma: PrismaService) {}
-  async create(userId: number, createCustomerDto: CreateCustomerDto) {
-    const data = await this.prisma.customer.create({
-      data: { ...createCustomerDto, userId },
-    });
+  async create(createCustomerDto: CreateCustomerDto) {
+    const data = await this.prisma.customer.create({ data: createCustomerDto });
     return data;
   }
 
