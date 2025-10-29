@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+// import type { User } from '@prisma/client';
 import { IsEmail, IsString, IsUrl } from 'class-validator';
 export class CreateCustomerDto {
   @ApiProperty()
@@ -49,4 +50,7 @@ export class CreateCustomerDto {
   @IsUrl()
   @IsString()
   identificationUrl: string | null;
+
+  // @ApiProperty()
+  // user: User | null;
 }

@@ -22,17 +22,10 @@ export class CustomersController {
   @Post()
   create(
     @Body()
-    customerData: {
-      firstName: string;
-      lastName: string;
-      otherName: string;
-      email: string;
-      phoneNumber: number;
-    },
+    customerData: CreateCustomerDto,
   ): Promise<CreateCustomerDto> {
-    const { firstName, lastName, otherName, email, phoneNumber } = customerData;
     return this.prismaService.customer.create({
-      data: { firstName, lastName, otherName, email, phoneNumber },
+      data: customerData,
     });
   }
 

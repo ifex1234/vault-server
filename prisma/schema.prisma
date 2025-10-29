@@ -15,7 +15,8 @@ model User {
   firstName String?
   lastName  String?
   password  String
-  customers Customer[]
+  pin      Int?
+  // customers Customer[]
 }
 
 model Customer {
@@ -35,6 +36,6 @@ model Customer {
   utilityBillUrl String?
   identificationUrl String?
   creatorEmail String?
-  user      User     @relation(fields: [userId], references: [id])
-  userId    Int
+  // user      User?     @relation(fields: [userId], references: [id])
+  // userId    Int?
 }

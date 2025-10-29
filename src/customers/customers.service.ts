@@ -6,8 +6,10 @@ import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class CustomersService {
   constructor(private prisma: PrismaService) {}
-  async create(createCustomerDto: CreateCustomerDto) {
-    const data = await this.prisma.customer.create({ data: createCustomerDto });
+  async create(userId: number, createCustomerDto: CreateCustomerDto) {
+    const data = await this.prisma.customer.create({
+      data: { ...createCustomerDto, userId },
+    });
     return data;
   }
 
@@ -18,14 +20,21 @@ export class CustomersService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} customer`;
+    return this.prisma.customer.findUnique({
+      where: { id },
+    });
   }
 
   update(id: number, updateCustomerDto: UpdateCustomerDto) {
-    return `This action updates a #${id} customer`;
+    return this.prisma.customer.update({
+      where: { id },
+      data: updateCustomerDto,
+    });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} customer`;
+    return this.prisma.customer.delete({
+      where: { id },
+    });
   }
 }
